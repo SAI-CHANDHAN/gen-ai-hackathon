@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "gen-ai-hackathon-472505",
+    "production": "gen-ai-hackathon-472505"
+  },
+  "targets": {},
+  "etags": {}
+}

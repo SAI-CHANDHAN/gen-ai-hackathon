@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KraftAI - AI-Powered Cultural Heritage Marketplace Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff6b35;
+            --secondary-color: #f7931e;
+            --accent-color: #2c3e50;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --background: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --border-radius: 12px;
+            --heritage-color: #8B4513;
+            --trend-color: #20B2AA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 300;
+        }
+
+        .header .subtitle {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .main-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .card-header h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .upload-area {
+            border: 3px dashed #ddd;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary-color);
+            background: rgba(255, 107, 53, 0.05);
+        }
+
+        .upload-area.dragover {
+            border-color: var(--primary-color);
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .mt-2 {
+            margin-top: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .results-section {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .result-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .result-header {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+        }
+
+        .result-content {
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #f5c6cb;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #c3e6cb;
+        }
+
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            background: none;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tab.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .image-preview {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .tag {
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .heritage-context {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.1), rgba(139, 69, 19, 0.05));
+            border-left: 4px solid var(--heritage-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .heritage-title {
+            color: var(--heritage-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .market-trends {
+            background: linear-gradient(135deg, rgba(32, 178, 170, 0.1), rgba(32, 178, 170, 0.05));
+            border-left: 4px solid var(--trend-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .trend-title {
+            color: var(--trend-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .insight-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .category-suggestion {
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .smart-fill-btn {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .smart-fill-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
+        }
+
+        .image-analysis-card {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(247, 147, 30, 0.05));
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .analysis-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .card-body {
+                padding: 20px;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-palette"></i> KraftAI</h1>
+            <p>Bridging Traditional Craftsmanship with Modern Digital Markets</p>
+            <div class="subtitle">Enhanced with Cultural Heritage Intelligence & Market Trends</div>
+        </div>
+
+        <div class="main-card">
+            <div class="card-header">
+                <h2><i class="fas fa-upload"></i> Upload Your Craft Image</h2>
+                <p>AI analyzes your craft, suggests categories, and provides cultural context</p>
+            </div>
+            <div class="card-body">
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <h3>Drag & Drop Your Image Here</h3>
+                    <p>or click to browse (Max 5MB, JPG/PNG)</p>
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                </div>
+
+                <div id="imagePreview" style="display: none;">
+                    <img id="previewImg" class="image-preview" alt="Preview">
+                    <div id="aiSuggestions"></div>
+                </div>
+
+                <form id="craftForm">
+                    <div class="form-group">
+                        <label for="productName">Product Name *</label>
+                        <input type="text" id="productName" name="productName" class="form-control" placeholder="e.g., Handwoven Silk Saree" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="artisanName">Artisan Name *</label>
+                        <input type="text" id="artisanName" name="artisanName" class="form-control" placeholder="e.g., Priya Sharma" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">
+                            Craft Category *
+                            <button type="button" class="smart-fill-btn" id="autoDetectBtn" style="display: none;">
+                                <i class="fas fa-magic"></i> Use AI Suggestion
+                            </button>
+                        </label>
+                        <select id="category" name="category" class="form-control" required>
+                            <option value="">Select Category</option>
+                            <option value="Textiles">Textiles & Fabrics</option>
+                            <option value="Pottery">Pottery & Ceramics</option>
+                            <option value="Jewelry">Jewelry & Accessories</option>
+                            <option value="Wood Carving">Wood Carving</option>
+                            <option value="Metal Work">Metal Work</option>
+                            <option value="Leather Craft">Leather Craft</option>
+                            <option value="Paper Craft">Paper Craft</option>
+                            <option value="Stone Carving">Stone Carving</option>
+                            <option value="Embroidery">Embroidery</option>
+                            <option value="Paintings">Paintings & Art</option>
+                        </select>
+                        <div id="culturalContext"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="materials">Materials Used</label>
+                        <input type="text" id="materials" name="materials" class="form-control" placeholder="e.g., Pure silk, natural dyes">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" name="location" class="form-control" placeholder="e.g., Varanasi, Uttar Pradesh">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="timeSpent">Time Spent Crafting</label>
+                        <input type="text" id="timeSpent" name="timeSpent" class="form-control" placeholder="e.g., 3 weeks">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Years of Experience</label>
+                        <input type="text" id="experience" name="experience" class="form-control" placeholder="e.g., 15 years">
+                    </div>
+
+                    <div id="marketTrends"></div>
+
+                    <button type="submit" class="btn btn-primary" id="generateBtn">
+                        <i class="fas fa-magic"></i> Generate AI Content
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="results-section" id="resultsSection">
+            <div class="tabs">
+                <button class="tab active" data-tab="description">Enhanced Description</button>
+                <button class="tab" data-tab="story">Cultural Story</button>
+                <button class="tab" data-tab="pricing">Smart Pricing</button>
+                <button class="tab" data-tab="social">Social Media</button>
+                <button class="tab" data-tab="insights">Market Intelligence</button>
+            </div>
+
+            <div class="tab-content active" id="description">
+                <div class="result-card">
+                    <div class="result-header">
+                        <i class="fas fa-file-alt"></i> AI-Generated Product Description with SEO & Cultural Context
+                    </div>
+                    <div class="result-content" id="descriptionContent"></div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="story">
+                <div class="result-card">
+                    <div class="result-header">
+                        <i class="fas fa-book"></i> Cultural Heritage Artisan Story
+                    </div>
+                    <div class="result-content" id="storyContent"></div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="pricing">
+                <div class="result-card">
+                    <div class="result-header">
+                        <i class="fas fa-tags"></i> Image-Based Competitive Pricing Analysis
+                    </div>
+                    <div class="result-content" id="pricingContent"></div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="social">
+                <div class="result-card">
+                    <div class="result-header">
+                        <i class="fas fa-share-alt"></i> Culturally-Aware Social Media Content
+                    </div>
+                    <div class="result-content">
+                        <div class="tabs">
+                            <button class="tab active" data-social="instagram">Instagram</button>
+                            <button class="tab" data-social="facebook">Facebook</button>
+                            <button class="tab" data-social="twitter">Twitter</button>
+                        </div>
+                        <div id="socialContent"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="insights">
+                <div class="result-card">
+                    <div class="result-header">
+                        <i class="fas fa-chart-line"></i> Market Intelligence & Cultural Positioning
+                    </div>
+                    <div class="result-content" id="insightsContent"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loadingSection" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <h3>AI is analyzing your craft with cultural intelligence...</h3>
+            <p>Creating culturally-aware marketing content and market insights</p>
+        </div>
+    </div>
+
+    <script>
+        // API Configuration - UPDATED URL
+        const API_BASE_URL = 'https://gen-ai-hackathon-472505.uc.r.appspot.com';
+        
+        // Global variables
+        let selectedFile = null;
+        let imageAnalysis = null;
+        let suggestedCategory = null;
+    
+        // DOM Elements
+        const uploadArea = document.getElementById('uploadArea');
+        const imageInput = document.getElementById('imageInput');
+        const imagePreview = document.getElementById('imagePreview');
+        const previewImg = document.getElementById('previewImg');
+        const craftForm = document.getElementById('craftForm');
+        const generateBtn = document.getElementById('generateBtn');
+        const resultsSection = document.getElementById('resultsSection');
+        const loadingSection = document.getElementById('loadingSection');
+        const categorySelect = document.getElementById('category');
+        const autoDetectBtn = document.getElementById('autoDetectBtn');
+        const culturalContext = document.getElementById('culturalContext');
+        const marketTrends = document.getElementById('marketTrends');
+    
+        // Initialize event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeEventListeners();
+        });
+    
+        function initializeEventListeners() {
+            uploadArea.addEventListener('click', () => imageInput.click());
+            uploadArea.addEventListener('dragover', handleDragOver);
+            uploadArea.addEventListener('dragleave', handleDragLeave);
+            uploadArea.addEventListener('drop', handleDrop);
+            imageInput.addEventListener('change', handleFileSelect);
+            craftForm.addEventListener('submit', handleFormSubmit);
+            autoDetectBtn.addEventListener('click', applySuggestedCategory);
+            categorySelect.addEventListener('change', loadCulturalContext);
+            
+            document.querySelectorAll('.tab[data-tab]').forEach(tab => {
+                tab.addEventListener('click', handleTabSwitch);
+            });
+        }
+    
+        function handleDragOver(e) {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        }
+    
+        function handleDragLeave(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+        }
+    
+        function handleDrop(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) handleFile(files[0]);
+        }
+    
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (file) handleFile(file);
+        }
+    
+        function handleFile(file) {
+            if (!file.type.startsWith('image/')) {
+                showError('Please select an image file.');
+                return;
+            }
+            if (file.size > 5 * 1024 * 1024) {
+                showError('File size must be less than 5MB.');
+                return;
+            }
+            selectedFile = file;
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImg.src = e.target.result;
+                imagePreview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+            analyzeImage(file);
+        }
+    
+        async function analyzeImage(file) {
+            try {
+                const formData = new FormData();
+                formData.append('image', file);
+                
+                console.log('Starting image analysis...'); // Debug
+                showAnalysisInProgress(); // Show analysis in progress
+                
+                const response = await fetch(`${API_BASE_URL}/api/analyze-image`, { 
+                    method: 'POST', 
+                    body: formData 
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    imageAnalysis = result.analysis; // Store globally
+                    suggestedCategory = result.analysis.suggested_category;
+                    
+                    console.log('Image analysis completed:', imageAnalysis); // Debug
+                    
+                    showImageAnalysis(result.analysis);
+                    showSuccess('Image analyzed successfully! Analysis data will be used for pricing.');
+                } else {
+                    showError(result.error || 'Failed to analyze image');
+                }
+            } catch (error) {
+                console.error('Error analyzing image:', error);
+                showError(`Failed to analyze image: ${error.message}`);
+            }
+        }
+    
+        function showImageAnalysis(analysis) {
+            const aiSuggestions = document.getElementById('aiSuggestions');
+            let content = '';
+            
+            console.log('Displaying image analysis results:', analysis); // Debug
+            
+            // Show detected labels
+            if (analysis.labels && analysis.labels.length > 0) {
+                const tagsHtml = analysis.labels.slice(0, 6).map(label => 
+                    `<span class="tag">${label.description} (${Math.round(label.score * 100)}%)</span>`
+                ).join('');
+                content += `<div class="tags"><strong>AI Detected:</strong> ${tagsHtml}</div>`;
+            }
+            
+            // Show category suggestion
+            if (analysis.suggested_category && analysis.suggested_category !== 'Other') {
+                content += `<div class="category-suggestion">
+                    <i class="fas fa-lightbulb"></i> 
+                    <strong>AI Suggests Category:</strong> ${analysis.suggested_category}
+                </div>`;
+                autoDetectBtn.style.display = 'inline-block';
+            }
+            
+            // Show cultural context if available
+            if (analysis.cultural_context) {
+                content += `<div class="heritage-context">
+                    <div class="heritage-title"><i class="fas fa-landmark"></i> Cultural Heritage Context</div>
+                    <p><strong>Significance:</strong> ${analysis.cultural_context.significance}</p>
+                    <p><strong>Traditional Regions:</strong> ${analysis.cultural_context.regions ? analysis.cultural_context.regions.join(', ') : 'Various regions'}</p>
+                </div>`;
+            }
+            
+            // Add analysis status indicator
+            content += `<div class="insight-card">
+                <i class="fas fa-check-circle" style="color: #28a745;"></i> 
+                <strong>Analysis Complete:</strong> Ready for enhanced pricing with visual intelligence
+            </div>`;
+            
+            aiSuggestions.innerHTML = content;
+        }
+    
+        function applySuggestedCategory() {
+            if (suggestedCategory) {
+                categorySelect.value = suggestedCategory;
+                loadCulturalContext();
+                showSuccess(`Category set to: ${suggestedCategory}`);
+            }
+        }
+    
+        async function loadCulturalContext() {
+            const category = categorySelect.value;
+            if (!category) {
+                culturalContext.innerHTML = '';
+                marketTrends.innerHTML = '';
+                return;
+            }
+            
+            try {
+                // Load cultural context
+                const heritageResponse = await fetch(`${API_BASE_URL}/api/cultural-context/${category}`);
+                if (heritageResponse.ok) {
+                    const heritageData = await heritageResponse.json();
+                    displayCulturalContext(heritageData.cultural_heritage);
+                }
+                
+                // Load market trends
+                const trendsResponse = await fetch(`${API_BASE_URL}/api/market-trends/${category}`);
+                if (trendsResponse.ok) {
+                    const trendsData = await trendsResponse.json();
+                    displayMarketTrends(trendsData.market_trends);
+                }
+            } catch (error) {
+                console.error('Error loading context:', error);
+            }
+        }
+    
+        function displayCulturalContext(heritage) {
+            if (!heritage) return;
+            
+            culturalContext.innerHTML = `
+                <div class="heritage-context">
+                    <div class="heritage-title"><i class="fas fa-landmark"></i> Cultural Heritage Context</div>
+                    <p><strong>Significance:</strong> ${heritage.significance}</p>
+                    <p><strong>Traditional Regions:</strong> ${heritage.regions ? heritage.regions.join(', ') : 'Various'}</p>
+                    <p><strong>Traditional Techniques:</strong> ${heritage.traditions ? heritage.traditions.join(', ') : 'Various traditional methods'}</p>
+                </div>
+            `;
+        }
+    
+        function displayMarketTrends(trends) {
+            if (!trends) return;
+            
+            marketTrends.innerHTML = `
+                <div class="market-trends">
+                    <div class="trend-title"><i class="fas fa-chart-trending-up"></i> Market Intelligence</div>
+                    <p><strong>Trending Keywords:</strong> ${trends.trending_keywords ? trends.trending_keywords.join(', ') : 'N/A'}</p>
+                    <p><strong>Target Demographics:</strong> ${trends.target_demographics ? trends.target_demographics.join(', ') : 'N/A'}</p>
+                    <p><strong>Price Range:</strong> ${trends.price_range}</p>
+                    <p><strong>Seasonal Demand:</strong> ${trends.seasonal_demand}</p>
+                </div>
+            `;
+        }
+    
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+            if (!selectedFile) {
+                showError('Please upload an image first.');
+                return;
+            }
+
+            // Check if analysis is complete
+            if (!imageAnalysis) {
+                showError('Please wait for image analysis to complete, then try again.');
+                return;
+            }
+
+            console.log('Form submission with analysis:', imageAnalysis); // Debug
+
+            const formData = new FormData(craftForm);
+            const data = Object.fromEntries(formData);
+            
+            showLoading(true);
+            
+            try {
+                // UPDATED: Use image-based pricing instead of regular pricing
+                const [description, story, pricing, insights] = await Promise.all([
+                    generateDescription(data),
+                    generateStory(data),
+                    generateImageBasedPricing(data), // This will now include analysis data
+                    generateInsights(data)
+                ]);
+
+                displayResults({ description, story, pricing, insights, form_data: data });
+                
+                showLoading(false);
+                resultsSection.style.display = 'block';
+                resultsSection.scrollIntoView({ behavior: 'smooth' });
+            } catch (error) {
+                console.error('Error generating content:', error);
+                showError('Failed to generate content. Please try again.');
+                showLoading(false);
+            }
+        }
+    
+        // API Call Functions
+        async function generateApiContent(endpoint, data) {
+            const response = await fetch(`${API_BASE_URL}/api/${endpoint}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            return response.json();
+        }
+        
+        // UPDATED: New function for image-based pricing with analysis data
+        async function generateImageBasedPricing(formData) {
+            try {
+                if (!selectedFile) {
+                    throw new Error('No image selected for analysis');
+                }
+
+                if (!imageAnalysis) {
+                    showError('Please wait for image analysis to complete.');
+                    throw new Error('Image analysis not completed');
+                }
+
+                const multipartFormData = new FormData();
+                multipartFormData.append('image', selectedFile);
+                
+                // Add form data
+                Object.keys(formData).forEach(key => {
+                    multipartFormData.append(key, formData[key]);
+                });
+                
+                // IMPORTANT: Send the image analysis data to backend
+                multipartFormData.append('imageAnalysis', JSON.stringify(imageAnalysis));
+                multipartFormData.append('suggestedCategory', suggestedCategory || '');
+                
+                console.log('Sending image analysis to backend:', imageAnalysis); // Debug log
+                
+                const response = await fetch(`${API_BASE_URL}/api/generate-pricing-from-image`, {
+                    method: 'POST',
+                    body: multipartFormData
+                });
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Pricing API error: ${response.status} - ${errorText}`);
+                }
+                
+                const result = await response.json();
+                
+                if (!result.success) {
+                    throw new Error(result.error || 'Failed to generate image-based pricing');
+                }
+                
+                return result;
+            } catch (error) {
+                console.error('Error in image-based pricing:', error);
+                showError(`Pricing error: ${error.message}`);
+                throw error;
+            }
+        }
+        
+        const generateDescription = (data) => generateApiContent('generate-description', data);
+        const generateStory = (data) => generateApiContent('generate-story', data);
+        const generateInsights = (data) => generateApiContent('generate-insights', data);
+        const generateSocialContent = (platform, data) => generateApiContent('generate-social-content', { ...data, platform });
+    
+        function displayResults(results) {
+            // Enhanced descriptions with cultural context
+            if (results.description?.success) {
+                let content = `<div id="copy-desc">${results.description.description.replace(/\n/g, '<br>')}</div>`;
+                
+                if (results.description.cultural_context) {
+                    content += `<div class="heritage-context">
+                        <div class="heritage-title">Cultural Heritage Integrated</div>
+                        <p>This description incorporates traditional significance and cultural context.</p>
+                    </div>`;
+                }
+                
+                content += `<button class="btn btn-secondary mt-2" onclick="copyElementText('copy-desc')">
+                    <i class="fas fa-copy"></i> Copy Enhanced Description</button>`;
+                
+                document.getElementById('descriptionContent').innerHTML = content;
+            }
+            
+            if (results.story?.success) {
+                let content = `<div id="copy-story">${results.story.story.replace(/\n/g, '<br>')}</div>`;
+                
+                if (results.story.cultural_heritage) {
+                    content += `<div class="heritage-context">
+                        <div class="heritage-title">Cultural Heritage Woven In</div>
+                        <p>This story connects the artisan's journey with rich cultural traditions.</p>
+                    </div>`;
+                }
+                
+                content += `<button class="btn btn-secondary mt-2" onclick="copyElementText('copy-story')">
+                    <i class="fas fa-copy"></i> Copy Cultural Story</button>`;
+                
+                document.getElementById('storyContent').innerHTML = content;
+            }
+            
+            // UPDATED: Enhanced pricing display with image analysis
+            if (results.pricing?.success) {
+                console.log('Displaying pricing results with analysis:', results.pricing); // Debug
+                
+                let content = `<div id="copy-price">${results.pricing.pricing.replace(/\n/g, '<br>')}</div>`;
+                
+                // Show image analysis results
+                if (results.pricing.image_analysis) {
+                    const analysis = results.pricing.image_analysis;
+                    console.log('Pricing analysis data:', analysis); // Debug
+                    
+                    content += `<div class="image-analysis-card">
+                        <div class="analysis-title"><i class="fas fa-eye"></i> Visual Analysis Results</div>
+                        <p><strong>Detected Category:</strong> ${analysis.detected_category}</p>
+                        <p><strong>Complexity Level:</strong> ${analysis.complexity_level}</p>
+                        <p><strong>Estimated Size:</strong> ${analysis.estimated_size}</p>
+                        ${analysis.materials_found.length > 0 ? `<p><strong>Materials Identified:</strong> ${analysis.materials_found.join(', ')}</p>` : ''}
+                        <p><strong>Confidence Score:</strong> ${analysis.confidence_score}%</p>
+                        <p><strong>Data Source:</strong> ${analysis.data_source || 'backend'}</p>
+                    </div>`;
+                }
+                
+                if (results.pricing.market_context) {
+                    content += `<div class="market-trends">
+                        <div class="trend-title">Market Context Applied</div>
+                        <p>Pricing analysis based on visual assessment and market positioning.</p>
+                    </div>`;
+                }
+                
+                content += `<button class="btn btn-secondary mt-2" onclick="copyElementText('copy-price')">
+                    <i class="fas fa-copy"></i> Copy Image-Based Pricing</button>`;
+                
+                document.getElementById('pricingContent').innerHTML = content;
+            }
+            
+            if (results.insights?.success) {
+                let content = `<div id="copy-insights">${results.insights.insights.replace(/\n/g, '<br>')}</div>`;
+                
+                content += `<div class="insight-card">
+                    <strong><i class="fas fa-lightbulb"></i> Enhanced Intelligence:</strong>
+                    This analysis combines cultural heritage positioning with current market trends and digital opportunities.
+                </div>`;
+                
+                content += `<button class="btn btn-secondary mt-2" onclick="copyElementText('copy-insights')">
+                    <i class="fas fa-copy"></i> Copy Market Intelligence</button>`;
+                
+                document.getElementById('insightsContent').innerHTML = content;
+            }
+            
+            setupSocialMediaTabs(results.form_data);
+        }
+    
+        function setupSocialMediaTabs(formData) {
+            const socialTabs = document.querySelectorAll('.tab[data-social]');
+            const socialContentEl = document.getElementById('socialContent');
+            
+            socialTabs.forEach(tab => {
+                tab.replaceWith(tab.cloneNode(true));
+            });
+    
+            document.querySelectorAll('.tab[data-social]').forEach(tab => {
+                tab.addEventListener('click', async () => {
+                    document.querySelectorAll('.tab[data-social]').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    const platform = tab.dataset.social;
+                    socialContentEl.innerHTML = `<div class="loading"><div class="spinner"></div></div>`;
+                    
+                    try {
+                        const result = await generateSocialContent(platform, formData);
+                        if (result.success) {
+                            const copyId = `copy-social-${platform}`;
+                            let content = `<h4><i class="fab fa-${platform}"></i> ${platform.charAt(0).toUpperCase() + platform.slice(1)} Post</h4>`;
+                            content += `<div id="${copyId}" style="white-space: pre-line; background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 15px 0;">${result.content}</div>`;
+                            
+                            if (result.suggested_hashtags && result.suggested_hashtags.length > 0) {
+                                content += `<div class="market-trends">
+                                    <div class="trend-title">Trending Hashtags Suggested</div>
+                                    <p>${result.suggested_hashtags.map(tag => `#${tag}`).join(' ')}</p>
+                                </div>`;
+                            }
+                            
+                            content += `<button class="btn btn-secondary" onclick="copyElementText('${copyId}')">
+                                <i class="fas fa-copy"></i> Copy ${platform} Content</button>`;
+                            
+                            socialContentEl.innerHTML = content;
+                        } else {
+                            socialContentEl.innerHTML = `<div class="error">Failed to generate ${platform} content.</div>`;
+                        }
+                    } catch (error) {
+                        socialContentEl.innerHTML = `<div class="error">Error generating content: ${error.message}</div>`;
+                    }
+                });
+            });
+            
+            document.querySelector('.tab[data-social="instagram"]')?.click();
+        }
+    
+        function handleTabSwitch(e) {
+            const targetTab = e.target.dataset.tab;
+            if (!targetTab) return;
+            
+            document.querySelectorAll('.tab[data-tab]').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            e.target.classList.add('active');
+            document.getElementById(targetTab).classList.add('active');
+        }
+    
+        function showLoading(show) {
+            loadingSection.style.display = show ? 'block' : 'none';
+            generateBtn.disabled = show;
+            generateBtn.innerHTML = show ? '<i class="fas fa-spinner fa-spin"></i> Generating...' : '<i class="fas fa-magic"></i> Generate Enhanced AI Content';
+        }
+
+        // Add function to show analysis in progress
+        function showAnalysisInProgress() {
+            const aiSuggestions = document.getElementById('aiSuggestions');
+            aiSuggestions.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p><i class="fas fa-brain"></i> AI is analyzing your craft with cultural intelligence...</p>
+                </div>
+            `;
+        }
+    
+        function createAlert(message, type) {
+            const icon = type === 'error' ? 'fa-exclamation-triangle' : 'fa-check-circle';
+            const alertDiv = document.createElement('div');
+            alertDiv.className = type;
+            alertDiv.innerHTML = `<i class="fas ${icon}"></i> ${message}`;
+            
+            document.querySelectorAll('.error, .success').forEach(el => el.remove());
+            craftForm.parentNode.insertBefore(alertDiv, craftForm.nextSibling);
+            
+            setTimeout(() => alertDiv.remove(), 5000);
+        }
+        
+        const showError = (message) => createAlert(message, 'error');
+        const showSuccess = (message) => createAlert(message, 'success');
+    
+        function copyElementText(elementId) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            
+            navigator.clipboard.writeText(element.innerText).then(() => {
+                showSuccess('Content copied to clipboard!');
+            }).catch(() => {
+                showError('Failed to copy content');
+            });
+        }
+    </script>
+</body>
+</html>

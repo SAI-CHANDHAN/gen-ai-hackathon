@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+  <!-- Background -->
+  <rect width="1200" height="900" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <rect x="50" y="20" width="1100" height="50" fill="white" rx="8" stroke="#ddd" stroke-width="2"/>
+  <text x="600" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#333">KraftAI Process Flow Diagram</text>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="startGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4CAF50"/>
+      <stop offset="100%" stop-color="#45a049"/>
+    </linearGradient>
+    <linearGradient id="processGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2196F3"/>
+      <stop offset="100%" stop-color="#1976D2"/>
+    </linearGradient>
+    <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9800"/>
+      <stop offset="100%" stop-color="#F57C00"/>
+    </linearGradient>
+    <linearGradient id="outputGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9C27B0"/>
+      <stop offset="100%" stop-color="#7B1FA2"/>
+    </linearGradient>
+    <linearGradient id="endGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F44336"/>
+      <stop offset="100%" stop-color="#D32F2F"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Start Node -->
+  <ellipse cx="150" cy="120" rx="80" ry="30" fill="url(#startGrad)" stroke="#4CAF50" stroke-width="2"/>
+  <text x="150" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">START</text>
+  
+  <!-- Step 1: Upload Image -->
+  <rect x="50" y="180" width="200" height="60" fill="url(#processGrad)" rx="8" stroke="#2196F3" stroke-width="2"/>
+  <text x="150" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">1. Upload Craft Image</text>
+  <text x="150" y="215" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Drag &amp; drop or browse</text>
+  <text x="150" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Max 5MB, JPG/PNG</text>
+  
+  <!-- Arrow 1 -->
+  <line x1="150" y1="150" x2="150" y2="175" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 2: AI Analysis -->
+  <rect x="320" y="180" width="200" height="60" fill="url(#aiGrad)" rx="8" stroke="#FF9800" stroke-width="2"/>
+  <text x="420" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">2. AI Image Analysis</text>
+  <text x="420" y="215" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Vision API detects craft type</text>
+  <text x="420" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Materials &amp; complexity analysis</text>
+  
+  <!-- Arrow 2 -->
+  <line x1="250" y1="210" x2="315" y2="210" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 3: Form Input -->
+  <rect x="590" y="180" width="200" height="60" fill="url(#processGrad)" rx="8" stroke="#2196F3" stroke-width="2"/>
+  <text x="690" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">3. Artisan Details Input</text>
+  <text x="690" y="215" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Name, experience, location</text>
+  <text x="690" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Category, materials, time</text>
+  
+  <!-- Arrow 3 -->
+  <line x1="520" y1="210" x2="585" y2="210" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 4: Cultural Context -->
+  <rect x="860" y="180" width="200" height="60" fill="url(#aiGrad)" rx="8" stroke="#FF9800" stroke-width="2"/>
+  <text x="960" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">4. Cultural Context Match</text>
+  <text x="960" y="215" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Heritage database lookup</text>
+  <text x="960" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Regional significance</text>
+  
+  <!-- Arrow 4 -->
+  <line x1="790" y1="210" x2="855" y2="210" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 5: Content Generation -->
+  <rect x="590" y="300" width="200" height="80" fill="url(#aiGrad)" rx="8" stroke="#FF9800" stroke-width="2"/>
+  <text x="690" y="325" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">5. AI Content Generation</text>
+  <text x="690" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Gemini AI processes:</text>
+  <text x="690" y="353" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">• Visual analysis + Cultural context</text>
+  <text x="690" y="366" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">• Market trends + Artisan story</text>
+  
+  <!-- Arrow from Step 4 to Step 5 -->
+  <line x1="960" y1="240" x2="960" y2="290" stroke="#333" stroke-width="2"/>
+  <line x1="960" y1="290" x2="790" y2="290" stroke="#333" stroke-width="2"/>
+  <line x1="790" y1="290" x2="690" y2="290" stroke="#333" stroke-width="2"/>
+  <polygon points="690,285 700,290 690,295" fill="#333"/>
+  
+  <!-- Parallel Output Generation -->
+  <rect x="80" y="450" width="180" height="60" fill="url(#outputGrad)" rx="8" stroke="#9C27B0" stroke-width="2"/>
+  <text x="170" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">Product Description</text>
+  <text x="170" y="485" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">SEO optimized with</text>
+  <text x="170" y="498" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">cultural context</text>
+  
+  <rect x="290" y="450" width="180" height="60" fill="url(#outputGrad)" rx="8" stroke="#9C27B0" stroke-width="2"/>
+  <text x="380" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">Artisan Story</text>
+  <text x="380" y="485" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Cultural heritage</text>
+  <text x="380" y="498" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">narrative</text>
+  
+  <rect x="500" y="450" width="180" height="60" fill="url(#outputGrad)" rx="8" stroke="#9C27B0" stroke-width="2"/>
+  <text x="590" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">Visual-Based Pricing</text>
+  <text x="590" y="485" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Complexity analysis</text>
+  <text x="590" y="498" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">&amp; market positioning</text>
+  
+  <rect x="710" y="450" width="180" height="60" fill="url(#outputGrad)" rx="8" stroke="#9C27B0" stroke-width="2"/>
+  <text x="800" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">Social Media Content</text>
+  <text x="800" y="485" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Multi-platform posts</text>
+  <text x="800" y="498" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">with trending hashtags</text>
+  
+  <rect x="920" y="450" width="180" height="60" fill="url(#outputGrad)" rx="8" stroke="#9C27B0" stroke-width="2"/>
+  <text x="1010" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">Market Insights</text>
+  <text x="1010" y="485" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Trend analysis &amp;</text>
+  <text x="1010" y="498" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">positioning strategy</text>
+  
+  <!-- Arrows from Step 5 to outputs -->
+  <line x1="650" y1="380" x2="170" y2="440" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="670" y1="380" x2="380" y2="440" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="690" y1="380" x2="590" y2="440" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="710" y1="380" x2="800" y2="440" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="730" y1="380" x2="1010" y2="440" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 6: Content Delivery -->
+  <rect x="500" y="580" width="200" height="60" fill="url(#processGrad)" rx="8" stroke="#2196F3" stroke-width="2"/>
+  <text x="600" y="600" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">6. Content Delivery</text>
+  <text x="600" y="615" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Real-time display with</text>
+  <text x="600" y="628" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">copy-to-clipboard feature</text>
+  
+  <!-- Arrows from outputs to delivery -->
+  <line x1="170" y1="510" x2="170" y2="540" stroke="#333" stroke-width="2"/>
+  <line x1="170" y1="540" x2="570" y2="540" stroke="#333" stroke-width="2"/>
+  <line x1="570" y1="540" x2="570" y2="575" stroke="#333" stroke-width="2"/>
+  <polygon points="565,575 570,585 575,575" fill="#333"/>
+  
+  <line x1="380" y1="510" x2="380" y2="550" stroke="#333" stroke-width="2"/>
+  <line x1="380" y1="550" x2="580" y2="550" stroke="#333" stroke-width="2"/>
+  
+  <line x1="590" y1="510" x2="590" y2="560" stroke="#333" stroke-width="2"/>
+  
+  <line x1="800" y1="510" x2="800" y2="550" stroke="#333" stroke-width="2"/>
+  <line x1="800" y1="550" x2="620" y2="550" stroke="#333" stroke-width="2"/>
+  
+  <line x1="1010" y1="510" x2="1010" y2="540" stroke="#333" stroke-width="2"/>
+  <line x1="1010" y1="540" x2="630" y2="540" stroke="#333" stroke-width="2"/>
+  
+  <!-- Step 7: User Export -->
+  <rect x="500" y="700" width="200" height="60" fill="url(#processGrad)" rx="8" stroke="#2196F3" stroke-width="2"/>
+  <text x="600" y="720" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">7. Export &amp; Use</text>
+  <text x="600" y="735" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Artisan copies content for</text>
+  <text x="600" y="748" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">e-commerce &amp; social media</text>
+  
+  <!-- Arrow 6 to 7 -->
+  <line x1="600" y1="640" x2="600" y2="695" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- End Node -->
+  <ellipse cx="600" cy="820" rx="80" ry="30" fill="url(#endGrad)" stroke="#F44336" stroke-width="2"/>
+  <text x="600" y="825" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">END</text>
+  
+  <!-- Arrow 7 to end -->
+  <line x1="600" y1="760" x2="600" y2="785" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Decision Diamond -->
+  <polygon points="420,300 460,340 420,380 380,340" fill="#FFE082" stroke="#FFC107" stroke-width="2"/>
+  <text x="420" y="335" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#333">Analysis</text>
+  <text x="420" y="348" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#333">Complete?</text>
+  
+  <!-- Arrow from Step 3 to Decision -->
+  <line x1="690" y1="240" x2="690" y2="290" stroke="#333" stroke-width="2"/>
+  <line x1="690" y1="290" x2="460" y2="290" stroke="#333" stroke-width="2"/>
+  <line x1="460" y1="290" x2="460" y2="330" stroke="#333" stroke-width="2"/>
+  <polygon points="455,330 460,340 465,330" fill="#333"/>
+  
+  <!-- Yes arrow from decision to content generation -->
+  <text x="500" y="355" font-family="Arial, sans-serif" font-size="9" fill="#333">Yes</text>
+  <line x1="460" y1="340" x2="590" y2="340" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- No arrow back to form input -->
+  <text x="420" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">No - Add Details</text>
+  <line x1="420" y1="300" x2="420" y2="270" stroke="#333" stroke-width="2"/>
+  <line x1="420" y1="270" x2="690" y2="270" stroke="#333" stroke-width="2"/>
+  <line x1="690" y1="270" x2="690" y2="240" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+  
+  <!-- Legend -->
+  <rect x="50" y="850" width="1100" height="40" fill="#f0f0f0" rx="5" stroke="#ccc"/>
+  <text x="70" y="870" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">Process Flow Legend:</text>
+  <rect x="200" y="858" width="12" height="12" fill="url(#processGrad)"/>
+  <text x="218" y="868" font-family="Arial, sans-serif" font-size="10" fill="#333">User Actions</text>
+  <rect x="320" y="858" width="12" height="12" fill="url(#aiGrad)"/>
+  <text x="338" y="868" font-family="Arial, sans-serif" font-size="10" fill="#333">AI Processing</text>
+  <rect x="450" y="858" width="12" height="12" fill="url(#outputGrad)"/>
+  <text x="468" y="868" font-family="Arial, sans-serif" font-size="10" fill="#333">Generated Content</text>
+  <polygon points="580,858 590,864 580,870" fill="#FFE082"/>
+  <text x="598" y="868" font-family="Arial, sans-serif" font-size="10" fill="#333">Decision Point</text>
+</svg>

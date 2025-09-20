@@ -1,0 +1,31 @@
+{
+  "name": "kraftai-backend",
+  "version": "1.0.0",
+  "description": "KraftAI - AI-Powered Marketplace Assistant for Local Artisans",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "@google-cloud/vertexai": "^1.4.0",
+    "@google-cloud/vision": "^4.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "openai": "^5.21.0"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "keywords": [
+    "ai",
+    "artisans",
+    "marketplace",
+    "google-cloud",
+    "handicrafts"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
